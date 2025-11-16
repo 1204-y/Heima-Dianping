@@ -3,6 +3,7 @@ package com.hmdp.utils;
 import io.lettuce.core.ScriptOutputType;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.time.LocalDate;
@@ -10,7 +11,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
-@Resource
+@Component
 public class RedisIdWork {
     @Resource
     private StringRedisTemplate stringRedisTemplate;
