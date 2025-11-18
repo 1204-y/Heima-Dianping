@@ -27,6 +27,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         if(UserHolder.getUser() == null){
             //没有,需要拦截
             response.setStatus(401);
+            return false;
         }
         //有用户则放行
         return true;
@@ -34,6 +35,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
+        //请求结束移除用户，避免线程复用导致数据泄露
+        UserHolder.removeUser();
     }
 }
